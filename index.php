@@ -34,19 +34,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $result->fetch_assoc();
         $_SESSION['username'] = $row['username'];
         $_SESSION['password'] = $password;
-
-        // Redirect to dashboard
+    
+        echo "Redirecting to dashboard.php...";
+        exit();
         header("Location: dashboard.php");
         exit();
     } elseif ($result->num_rows > 1) {
-        // Admin bypass
         $_SESSION['username'] = 'admin_bypass';
+    
+        echo "Redirecting to admin.php...";
+        exit();
         header("Location: admin.php");
         exit();
     } else {
-        // Invalid login
         $error = "Invalid credentials. Try again.";
     }
+    
 
     $conn->close();
 }
