@@ -21,7 +21,7 @@ $flag = "meer{sup3r_s3cr3t_flvg}";
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - SQL Injection CTF</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Welcome, <?php echo htmlspecialchars($username); ?>!</h2>
