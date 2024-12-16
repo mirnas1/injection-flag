@@ -9,18 +9,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-
     $servername = "localhost";
     $dbusername = "root"; 
     $dbpassword_db = "";  
     $dbname = "injections";
 
+    // Establish database connection
     $conn = new mysqli($servername, $dbusername, $dbpassword_db, $dbname);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
-    } 
+    }
 
+    // DELIBERATE SQL INJECTION VULNERABILITY
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
 
@@ -28,18 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("SQL Error: " . $conn->error);
     }
 
+    // Handle query results
     if ($result->num_rows === 1) {
         $row = $result->fetch_assoc();
         $_SESSION['username'] = $row['username'];
         $_SESSION['password'] = $password;
-        
+
+        // Redirect to dashboard
         header("Location: dashboard.php");
         exit();
     } elseif ($result->num_rows > 1) {
+        // Admin bypass
         $_SESSION['username'] = 'admin_bypass';
         header("Location: admin.php");
         exit();
     } else {
+        // Invalid login
         $error = "Invalid credentials. Try again.";
     }
 
