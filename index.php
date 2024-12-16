@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $servername = "localhost";
     $dbusername = "root"; 
-    $dbpassword_db = "";  
+    $dbpassword_db = "meer";  
     $dbname = "injections";
 
     $conn = new mysqli($servername, $dbusername, $dbpassword_db, $dbname);
