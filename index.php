@@ -24,6 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // DELIBERATE SQL INJECTION VULNERABILITY
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
+if ($result === FALSE) {
+    die("SQL Error: " . $conn->error); // Display MySQL errors for debugging
+}
+
 
     if ($result === FALSE) {
         die("SQL Error: " . $conn->error);
