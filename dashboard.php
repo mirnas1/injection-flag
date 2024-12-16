@@ -15,7 +15,7 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 
-$flag = "CTF{Hardcoded_Flag_XYZ789}";
+$flag = "meer{sup3r_s3cr3t_flvg}";
 ?>
 <!DOCTYPE html>
 <html lang="en">
